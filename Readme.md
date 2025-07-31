@@ -24,18 +24,29 @@ PulseBot is a Slack bot that automates daily standups for your team. It collects
 
 ### Installation
 
-1. **Clone the repository:**
+0. **Create a Virtual environment for development:**
     ```sh
-    git clone https://github.com/yourusername/pulsebot.git
-    cd pulsebot
+    virtualenv -p python3 slackbot-env
+    ```
+1. **Activate the virtual environment:**
+    ```sh
+    source slackbot-env/bin/activate
+    ```
+2. **Clone the repository:**
+    ```sh
+    git clone git@github.com:[your_username]/standup-slack-bot.git
+    ```
+3. **move to the project directory:**
+    ```sh
+    cd standup-slack-bot
     ```
 
-2. **Install dependencies:**
+4. **Install dependencies:**
     ```sh
     pip install -r requirements.txt
     ```
 
-3. **Configure environment variables:**
+5. **Configure environment variables:**
 
     Create a `.env` file in the root directory:
     ```
@@ -46,18 +57,18 @@ PulseBot is a Slack bot that automates daily standups for your team. It collects
     PUBLIC_URL=https://your-ngrok-url.ngrok-free.app
     ```
 
-4. **Run the bot:**
+5. **Run the bot:**
     ```sh
-    uvicorn app.main:app --reload
+    PYTHONPATH=. python app/main.py
     ```
 
-5. **Expose your local server (for Slack events):**
+6. **Expose your local server (for Slack events):**
     ```sh
     ngrok http 8000
     ```
 
-6. **Install the bot to your Slack workspace:**
-    - Visit `https://your-ngrok-url.ngrok-free.app/slack/install` and follow the prompts.
+7. **Install the bot to your Slack workspace:**
+    - Visit `https://[your-ngrok-url].ngrok-free.app/slack/install` and follow the prompts.
 
 ## Usage
 
@@ -67,3 +78,6 @@ PulseBot is a Slack bot that automates daily standups for your team. It collects
 - Responses are stored in a local SQLite database (`standup.db`).
 
 ## Project Structure
+
+- db.py has the database structure here
+- main.py has all the api handlers for slack app requests
